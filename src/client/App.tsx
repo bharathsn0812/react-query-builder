@@ -1,13 +1,13 @@
-import axios from "axios";
-import QueryBuilder from "./components/query_builder/QueryBuilder"
+import axios from "axios"
+import QueryBuilder from "./components/QueryBuilder"
 
 function App() {
   const handleClick = async () => {
     try {
-      await axios.post("/api/save-rules", {});
-      alert("Submitted");
+      await axios.post("/api/save-rules", {})
+      alert("Submitted")
     } catch {
-      alert("Error");
+      alert("Error")
     }
   };
 
@@ -35,4 +35,4 @@ function App() {
   );
 }
 
-export default App;
+export default App
