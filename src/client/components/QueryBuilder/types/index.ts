@@ -1,27 +1,32 @@
 export type CombinatorType = "AND" | "OR"
 
-export type FieldType = "text" | "number"
+export type FieldNameType = "amount" | "name" | "id" | "transaction_state" | "device_ip" | "installments"
 
-export type RuleType = {
-    fieldName: string,
-    operation: string,
-    value: string | number | object
+export type OperationType = "EQUAL" | "NOT_EQUAL" | "LESS_THAN" | "GREATER_THAN"
+
+export type CurrencyType = "USD" | "EUR" | "GBP"
+
+export type TransactionStateType = "SUCCEEDED" | "REJECTED" | "ERROR" | "TIMEOUT" | "CANCELLED" | "FAILED" | "ABORTED"
+
+export interface AmountValueType {
+  amount: number,
+  currency: CurrencyType
 }
 
-export type RuleGroupType = {
-    combinator: CombinatorType,
-    conditions?: RuleType[],
-    subConditions?: RuleGroupType[]
+export type RuleValue = string | number | AmountValueType | TransactionStateType
+
+export interface RuleType {
+  fieldName: FieldNameType,
+  operation: OperationType,
+  value: RuleValue
 }
 
-export type FieldNameType = {
-    name: string,
-    type: FieldType,
-    backendValue: string,
-    options?: string[]
+export interface RuleGroupType {
+  combinator: CombinatorType,
+  subConditions: (RuleType | RuleGroupType)[]
 }
 
-export type OperationType = {
-    label: string,
-    value: string
+export interface QueryStructureType {
+  combinator: CombinatorType,
+  conditions: (RuleType | RuleGroupType)[]
 }
