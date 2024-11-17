@@ -110,7 +110,7 @@ export default function RuleComponent({ rule, onUpdate, onDelete } : RuleCompone
           ))}
         </select>
         {renderValueInput()}
-        <button onClick={onDelete} className="bg-red-500 text-white px-2 py-1 rounded">Delete</button>
+        <button onClick={onDelete} className="bg-red-500 text-white px-2 py-1 rounded">Delete Rule</button>
       </div>
     )
   }
