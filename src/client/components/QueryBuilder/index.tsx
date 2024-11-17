@@ -3,7 +3,7 @@ import { QueryStructureType } from "./types"
 import RuleGroupComponent from "./RuleGroupComponent"
 
 interface QueryBuilderProps {
-  handleClick: (s: object) => void
+  handleClick: (query: QueryStructureType) => void
 }
 
 export default function QueryBuilder({ handleClick }: QueryBuilderProps) {
