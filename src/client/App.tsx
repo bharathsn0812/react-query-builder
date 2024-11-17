@@ -2,37 +2,20 @@ import axios from "axios"
 import QueryBuilder from "./components/QueryBuilder"
 
 function App() {
-  const handleClick = async () => {
+  const handleClick = async (query: object) => {
     try {
-      await axios.post("/api/save-rules", {})
+      await axios.post("/api/save-rules", query)
       alert("Submitted")
     } catch {
-      alert("Error")
+      alert("Error");
     }
-  };
+  }
 
   return (
-    <div>
-      <h1>Query Builder</h1>
-      <form>
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="button"
-          onClick={handleClick}>
-          Submit
-        </button>
-
-        <QueryBuilder />
-
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          type="button"
-          onClick={handleClick}>
-          Cancel
-        </button>
-      </form>
+    <div className="min-h-screen bg-gray-100 py-6">
+      <QueryBuilder handleClick={handleClick} />
     </div>
-  );
+  )
 }
 
 export default App
