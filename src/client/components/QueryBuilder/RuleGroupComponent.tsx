@@ -11,7 +11,7 @@ interface RuleGroupComponentProps {
     onDelete?: () => void
 }
 
-export default function RuleGroupComponent({ group, onUpdate, onDelete } : RuleGroupComponentProps){
+export default function RuleGroupComponent({ group, onUpdate, onDelete } : RuleGroupComponentProps) {
     const addRule = () => {
       const newRule: RuleType = {
         fieldName: "name",

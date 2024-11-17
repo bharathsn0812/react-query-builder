@@ -25,6 +25,17 @@ export default function RuleComponent({ rule, onUpdate, onDelete } : RuleCompone
           return ["EQUAL", "NOT_EQUAL"]
       }
     }
+
+    function handleAmountInput(amount: string) {
+      const amountValue = rule.value as AmountValueType
+      const isValueObject = typeof rule.value === 'object'
+      // If no currency selected, then default currency is USD
+      if (!isValueObject) {
+        onUpdate({ ...rule, value: { ...amountValue, amount: Number(amount), currency: "USD" } })
+      } else {
+        onUpdate({ ...rule, value: { ...amountValue, amount: Number(amount) } })
+      }
+    }
   
     const renderValueInput = () => {
       switch (rule.fieldName) {
@@ -36,7 +47,7 @@ export default function RuleComponent({ rule, onUpdate, onDelete } : RuleCompone
               <input
                 type="number"
                 value={amountValue.amount}
-                onChange={(e) => onUpdate({ ...rule, value: { ...amountValue, amount: Number(e.target.value) } })}
+                onChange={(e) => handleAmountInput(e.target.value)}
                 className="border rounded px-2 py-1 mr-2"
               />
               <select
