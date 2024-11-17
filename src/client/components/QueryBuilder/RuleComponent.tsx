@@ -79,6 +79,7 @@ export default function RuleComponent({ rule, onUpdate, onDelete } : RuleCompone
               onChange={(e) => onUpdate({ ...rule, value: e.target.value as TransactionStateType })}
               className="border rounded px-2 py-1"
             >
+              <option className="text-red" value="">SELECT</option>
               <option value="SUCCEEDED">SUCCEEDED</option>
               <option value="REJECTED">REJECTED</option>
               <option value="ERROR">ERROR</option>
