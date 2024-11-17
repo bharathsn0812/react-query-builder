@@ -11,7 +11,8 @@ export const validateQuery = (query: object): boolean => {
               return true
             }
             if (Array.isArray(value)) {
-              return value.length === 0 || value.some(checkEmpty)
+              if (value.length === 0) throw Error("At least one Rule should be in a group")
+              return value.some(checkEmpty)
             }
             if (typeof value === "object") {  
               const checkPropertiesIfAmount = (obj: any) =>
@@ -45,8 +46,8 @@ export const validateQuery = (query: object): boolean => {
       }
   
       return true
-    } catch(e: any) {
-      alert(e.message)
+    } catch(e: unknown) {
+      if (e instanceof Error) alert(e.message)
       return false
     }
 }
