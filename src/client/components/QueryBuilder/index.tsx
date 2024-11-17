@@ -1,20 +1,22 @@
 import { useState } from "react"
-import axios from "axios"
 import { QueryStructureType } from "./types"
 import RuleGroupComponent from "./RuleGroupComponent"
 
-export default function QueryBuilder(){
+interface QueryBuilderProps {
+  handleClick: (s: object) => void
+}
+
+export default function QueryBuilder({ handleClick }: QueryBuilderProps) {
   const [query, setQuery] = useState<QueryStructureType>({
     combinator: "AND",
     conditions: [],
   })
   const [jsonOutput, setJsonOutput] = useState<string>("")
 
-  const handleSubmit = async () => {
+  async function handleSubmit() {
     setJsonOutput(JSON.stringify(query, null, 2))
     try {
-      const response = await axios.post("/api/save-rules", query)
-      console.log("Server response:", response.data)
+      handleClick(query)
     } catch (error) {
       console.error("Error sending query to server:", error)
     }
