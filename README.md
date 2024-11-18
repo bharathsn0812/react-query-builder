@@ -15,3 +15,4 @@ Follow these steps to set up and run the project locally.
 
 1. npm install
 2. npm run start
+3. npm run test
